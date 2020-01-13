@@ -1,0 +1,5 @@
+beautifulsoup4==4.6.3
+mkdocs==1.0.3
+pypandoc==1.4
+rst2pdf==0.96
+PyPDF2==1.26.0
