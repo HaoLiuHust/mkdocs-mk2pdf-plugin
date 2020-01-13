@@ -14,7 +14,7 @@ class MK2PdfPlugin(BasePlugin):
         ('enabled_if_env', config_options.Type(utils.string_types)),
         ('combined', config_options.Type(bool, default=False)),
         ('combined_output_path', config_options.Type(utils.string_types, default="pdf/combined.pdf")),
-        ('style_path', config_options.Type(utils.string_types))
+        ('style_path', config_options.Type(utils.string_types, default=None))
     )
 
     def __init__(self):
@@ -100,7 +100,11 @@ class MK2PdfPlugin(BasePlugin):
                 output_content = modify_html(output_content, os.path.join('pdf', combined_pdf_path),
                                              label=os.path.basename(combined_pdf_path))
 
-            self.renderer.write_pdf(page.file.abs_src_path, rst_file,pdf_file,style=os.path.join(config.data['docs_dir'],self.config['style_path']))
+            if self.config['style_path'] is not None:
+                self.renderer.write_pdf(page.file.abs_src_path, rst_file,pdf_file,style=os.path.join(config.data['docs_dir'],self.config['style_path']))
+            else:
+                self.renderer.write_pdf(page.file.abs_src_path, rst_file,pdf_file)
+
             output_content = modify_html(output_content,os.path.join('pdf',rel_path,filename+".pdf"),label=filename+".pdf")
 
         except Exception as e:
