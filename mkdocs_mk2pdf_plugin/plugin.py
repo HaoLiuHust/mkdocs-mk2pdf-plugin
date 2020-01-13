@@ -6,7 +6,7 @@ from mkdocs.config import config_options
 from mkdocs.plugins import BasePlugin
 from mkdocs import utils
 import traceback
-from utils import modify_html
+from .utils import modify_html
 
 class MK2PdfPlugin(BasePlugin):
     config_scheme = (
