@@ -4,7 +4,7 @@
 
 *An MkDocs plugin to export content pages as PDF files*
 
-The pdf-export plugin will export all markdown pages in your MkDocs repository as PDF files using pandoc and rst2pdf. The exported documents support many advanced features missing in most other PDF exports, such as PDF navigation.
+The plugin will export all markdown pages in your MkDocs repository as PDF files using pandoc and rst2pdf. The exported documents support many advanced features missing in most other PDF exports, such as PDF navigation.
 
 ## Requirements
 
@@ -17,7 +17,7 @@ The pdf-export plugin will export all markdown pages in your MkDocs repository a
 Install the package with pip:
 
 ```bash
-pip install mkdocs-pdf-export-plugin
+pip install mkdocs-mk2pdf-plugin
 ```
 
 Enable the plugin in your `mkdocs.yml`:
