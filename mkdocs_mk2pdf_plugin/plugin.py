@@ -6,11 +6,10 @@ from mkdocs.config import config_options
 from mkdocs.plugins import BasePlugin
 from mkdocs import utils
 import traceback
-from utils import modify_html
+from .utils import modify_html
 
 class MK2PdfPlugin(BasePlugin):
     config_scheme = (
-        ('verbose', config_options.Type(bool, default=False)),
         ('enabled_if_env', config_options.Type(utils.string_types)),
         ('combined', config_options.Type(bool, default=False)),
         ('combined_output_path', config_options.Type(utils.string_types, default="pdf/combined.pdf")),
@@ -40,18 +39,6 @@ class MK2PdfPlugin(BasePlugin):
 
         from .renderer import Renderer
         self.renderer = Renderer(self.combined)
-
-        from weasyprint.logger import LOGGER
-        import logging
-
-        if self.config['verbose']:
-            LOGGER.setLevel(logging.DEBUG)
-        else:
-            LOGGER.setLevel(logging.ERROR)
-
-        handler = logging.StreamHandler()
-        handler.setFormatter(logging.Formatter('%(levelname)s: %(message)s'))
-        LOGGER.addHandler(handler)
 
     def on_nav(self, nav, config, files):
         if not self.enabled:
