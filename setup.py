@@ -12,7 +12,7 @@ def load_requirements(fname):
 
 setup(
     name='mkdocs-mk2pdf-plugin',
-    version='0.1.0',
+    version='0.1.2',
     description='An MkDocs plugin to export content pages as PDF files',
     long_description='The pdf-export plugin will export all markdown pages in your MkDocs repository as PDF files'
                      'using pandoc and rst2pdf. The exported documents support many advanced features missing in most other'
