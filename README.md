@@ -69,7 +69,7 @@ This option allows you to use a different destination for the combined PDF file.
 
 ### `style_path`
 
-This option allows you to specify a custom rst2pdf style(refer to rst2pdf). This path must be **relative to your docs root** (See example below). Default is not set.
+This option allows you to specify a custom rst2pdf style(refer to rst2pdf), usually useful when the default style does not support a font. This path must be **relative to your docs root** (See example below). Default is not set.
 
 `mkdocs.yml`:
 ```yaml
