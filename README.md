@@ -10,7 +10,11 @@ The pdf-export plugin will export all markdown pages in your MkDocs repository a
 
 1. This package requires MkDocs version 1.0 or higher (0.17 works as well)
 2. Python 3.4 or higher
-3. pandoc, rst2pdf and PyPDF2
+3. pandoc, xelatex(to support Chinese)
+   ```
+   sudo apt install pandoc
+   sudo apt install texlive texlive-latex-extra texlive-latex-recommended texlive-xetex
+   ```
 
 ## Installation
 
@@ -62,15 +66,14 @@ Setting this to `true` will combine all pages into a single PDF file. All downlo
 
 This option allows you to use a different destination for the combined PDF file. Has no effect when `combined` is set to `false`. Default is `pdf/combined.pdf`.
 
-### `style_path`
+### `pandoc_template`
 
-This option allows you to specify a custom rst2pdf style(refer to rst2pdf). This path must be **relative to your docs root** (See example below). Default is not set.
+This option allows you to use a custom pandoc template to convert markdown file to pdf files.
 
 `mkdocs.yml`:
 ```yaml
 plugins:
     - mk2pdf-export:
-        style_path: chinese.style
 ```
 ```bash
 project-root

@@ -13,7 +13,7 @@ class MK2PdfPlugin(BasePlugin):
         ('enabled_if_env', config_options.Type(utils.string_types)),
         ('combined', config_options.Type(bool, default=False)),
         ('combined_output_path', config_options.Type(utils.string_types, default="pdf/combined.pdf")),
-        ('style_path', config_options.Type(utils.string_types, default=None))
+        ('pandoc_template', config_options.Type(utils.string_types, default="")),
     )
 
     def __init__(self):
@@ -38,7 +38,8 @@ class MK2PdfPlugin(BasePlugin):
             print('Combined PDF export is enabled')
 
         from .renderer import Renderer
-        self.renderer = Renderer(self.combined)
+        self.renderer = Renderer(self.combined,os.path.join(config.data['docs_dir'],self.config['pandoc_template']))
+
 
     def on_nav(self, nav, config, files):
         if not self.enabled:
@@ -70,29 +71,23 @@ class MK2PdfPlugin(BasePlugin):
         path = os.path.dirname(abs_dest_path)
 
         rel_path=os.path.relpath(path,site_dir)
-        pdf_path=os.path.join(site_dir,'pdf',rel_path,)
-        rst_path=os.path.join(site_dir,'rst',rel_path)
+        pdf_path=os.path.join(site_dir,'pdf',rel_path)
 
         os.makedirs(pdf_path,exist_ok=True)
-        os.makedirs(rst_path,exist_ok=True)
 
         filename = os.path.splitext(os.path.basename(src_path))[0]
         pdf_file = os.path.join(pdf_path,filename+".pdf")
-        rst_file = os.path.join(rst_path,filename+".rst")
 
         try:
             if self.combined:
-                self.renderer.add_doc(page.file.src_path, pdf_file)
-                combined_pdf_path = self.config['combined_output_path']
-                output_content = modify_html(output_content, os.path.relpath(combined_pdf_path,abs_dest_path),
+                self.renderer.add_doc(page.file.src_path, page.file.abs_src_path)
+                combined_pdf_path =  os.path.join(site_dir, self.config['combined_output_path'])
+                output_content = modify_html(output_content, os.path.relpath(combined_pdf_path,path),
                                              label=os.path.basename(combined_pdf_path))
 
-            if self.config['style_path'] is not None:
-                self.renderer.write_pdf(page.file.abs_src_path, rst_file,pdf_file,style=os.path.join(config.data['docs_dir'],self.config['style_path']))
-            else:
-                self.renderer.write_pdf(page.file.abs_src_path, rst_file,pdf_file)
+                self.renderer.write_pdf(page.file.abs_src_path,pdf_file)
 
-            output_content = modify_html(output_content,os.path.relpath(pdf_file,abs_dest_path),label=filename+".pdf")
+            output_content = modify_html(output_content,os.path.relpath(pdf_file,path),label=filename+".pdf")
 
 
         except Exception as e:
