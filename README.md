@@ -4,7 +4,7 @@
 
 *An MkDocs plugin to export content pages as PDF files*
 
-The plugin will export all markdown pages in your MkDocs repository as PDF files using pandoc and rst2pdf. The exported documents support many advanced features missing in most other PDF exports, such as PDF navigation, PDF pagenum.
+The plugin will export all markdown pages in your MkDocs repository as PDF files using pandoc. The exported documents support many advanced features missing in most other PDF exports, such as PDF navigation, PDF pagenum.
 
 ## Requirements
 
