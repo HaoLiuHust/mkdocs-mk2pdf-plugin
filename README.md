@@ -47,13 +47,8 @@ You may customize the plugin by passing options in `mkdocs.yml`:
 ```yaml
 plugins:
     - mk2pdf-export:
-        verbose: true
         enabled_if_env: ENABLE_PDF_EXPORT
 ```
-
-### `verbose`
-
-Setting this to `true` will show all WeasyPrint debug messages during the build. Default is `false`.
 
 ### `enabled_if_env`
 

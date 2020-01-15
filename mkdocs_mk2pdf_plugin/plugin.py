@@ -84,7 +84,7 @@ class MK2PdfPlugin(BasePlugin):
             if self.combined:
                 self.renderer.add_doc(page.file.src_path, pdf_file)
                 combined_pdf_path = self.config['combined_output_path']
-                output_content = modify_html(output_content, os.path.join('pdf', combined_pdf_path),
+                output_content = modify_html(output_content, os.path.relpath(combined_pdf_path,abs_dest_path),
                                              label=os.path.basename(combined_pdf_path))
 
             if self.config['style_path'] is not None:
@@ -92,7 +92,8 @@ class MK2PdfPlugin(BasePlugin):
             else:
                 self.renderer.write_pdf(page.file.abs_src_path, rst_file,pdf_file)
 
-            output_content = modify_html(output_content,os.path.join('pdf',rel_path,filename+".pdf"),label=filename+".pdf")
+            output_content = modify_html(output_content,os.path.relpath(pdf_file,abs_dest_path),label=filename+".pdf")
+
 
         except Exception as e:
             print('Error converting {} to PDF: {}'.format(src_path, e), file=sys.stderr)
