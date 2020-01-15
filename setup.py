@@ -21,11 +21,9 @@ def read_file(filename):
 
 setup(
     name='mkdocs-mk2pdf-plugin',
-    version='0.1.4',
+    version='0.1.5',
     description='An MkDocs plugin to export content pages as PDF files',
-    # long_description='The pdf-export plugin will export all markdown pages in your MkDocs repository as PDF files'
-    #                  'using pandoc and rst2pdf. The exported documents support many advanced features missing in most other'
-    #                  'PDF exports, such as a PDF Index, PDF navigation and support for CSS paged media module.',
+   
     long_description=read_file('README.md'), # 读取的Readme文档内容
     long_description_content_type="text/markdown",  # 指定包文档格式为markdown
     keywords='mkdocs pdf export',
@@ -37,9 +35,6 @@ setup(
     install_requires=[
         'mkdocs>=0.17',
         'beautifulsoup4>=4.6.3',
-        'pypandoc==1.4',
-        'rst2pdf==0.96',
-        'PyPDF2==1.26.0'
     ],
     #install_requires=load_requirements("requirements.txt"),
     classifiers=[

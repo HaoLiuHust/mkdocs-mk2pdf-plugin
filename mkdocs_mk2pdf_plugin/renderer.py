@@ -1,41 +1,38 @@
-
-import pypandoc
-from rst2pdf import createpdf
-from PyPDF2 import PdfFileMerger
-
+import os
 class Renderer(object):
-    def __init__(self, combined: bool):
+    def __init__(self, combined: bool, template: str=""):
         self.combined = combined
         self.page_order = []
         self.pgnum = 0
         self.pages = []
+        self.template=template
 
-    def write_pdf(self,  mk_filename: str, rst_filename: str, pdf_filename: str, style=None):
-        pypandoc.convert_file(mk_filename,'rst',outputfile=rst_filename)
-        if style is None:
-            createpdf.main([rst_filename,pdf_filename])
+    def write_pdf(self,  mk_filename: str, pdf_filename: str):
+        if os.path.isfile(self.template) and os.path.exists(self.template):
+            os.system('pandoc --latex-engine=xelatex --template=%s  %s -o %s'%(self.template,mk_filename,pdf_filename))
         else:
-            createpdf.main([rst_filename,pdf_filename,'-s',style])
+            os.system('pandoc --latex-engine=xelatex %s -o %s'%(mk_filename,pdf_filename))
 
     def add_doc(self, rel_path: str, abs_path: str):
-        pos = self.page_order.index(rel_path)
-        self.pages[pos] =  abs_path
+        try:
+            pos = self.page_order.index(rel_path)
+            self.pages[pos] =  abs_path
+        except:
+            pass
 
     def write_combined_pdf(self, output_path: str):
-        file_lst=[]
-        pdf_merger = PdfFileMerger()
-        for p in self.pages:
-            if p is None:
-                print('Unexpected error - not all pages were rendered properly')
-                continue
+        combined_md=output_path.replace(".pdf",".md")
 
-            file_lst.append(open(p,'rb'))
+        with open(combined_md,'w') as f:
+            for p in self.pages:
+                if p is None:
+                    print('Unexpected error - not all pages were rendered properly')
+                    continue
 
-        for f in file_lst:
-            pdf_merger.append(f)
+                with open(p,'r') as rf:
+                    lines=rf.readlines()
+                    f.writelines(lines)
+                    if not lines[-1].endswith('\n'):
+                        f.write('\n')
 
-        with open(output_path,'wb') as f:
-            pdf_merger.write(f)
-
-        for f in file_lst:
-            f.close()
+        self.write_pdf(combined_md,output_path)
