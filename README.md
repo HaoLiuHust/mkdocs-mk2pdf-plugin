@@ -1,10 +1,11 @@
-# MkDocs PDF Export Plugin
-*The plugin is based on https://github.com/zhaoterryy/mkdocs-pdf-export-plugin/ ,the main change is use pandoc to convert doc to PDFs which support PDF navigation, another change is add a download icon on the page*
+# Mkdoc Pandoc Plugin
 
+*This plugin is based on https://github.com/HaoLiuHust/mkdocs-mk2pdf-plugin and aims to
+use pandoc as a generic engine to convert to many document format that pandoc suports.*
 
-*An MkDocs plugin to export content pages as PDF files*
+*An MkDocs plugin to convert content pages to many format*
 
-The plugin will export all markdown pages in your MkDocs repository as PDF files using pandoc. The exported documents support many advanced features missing in most other PDF exports, such as PDF navigation, PDF pagenum.
+The plugin will use pandoc to export all markdown pages in your MkDocs repository.
 
 ## Requirements
 
@@ -21,7 +22,7 @@ The plugin will export all markdown pages in your MkDocs repository as PDF files
 Install the package with pip:
 
 ```bash
-pip install mkdocs-mk2pdf-plugin
+pip install mkdocs-pandoc-plugin
 ```
 
 Enable the plugin in your `mkdocs.yml`:
@@ -29,7 +30,7 @@ Enable the plugin in your `mkdocs.yml`:
 ```yaml
 plugins:
     - search
-    - mk2pdf-export
+    - pandoc
 ```
 
 > **Note:** If you have no `plugins` entry in your config file yet, you'll likely also want to add the `search` plugin. MkDocs enables it by default if there is no `plugins` entry set, but now you have to enable it explicitly.
@@ -50,7 +51,7 @@ You may customize the plugin by passing options in `mkdocs.yml`:
 
 ```yaml
 plugins:
-    - mk2pdf-export:
+    - pandoc:
         enabled_if_env: ENABLE_PDF_EXPORT
 ```
 
@@ -73,7 +74,7 @@ This option allows you to use a custom pandoc template to convert markdown file 
 `mkdocs.yml`:
 ```yaml
 plugins:
-    - mk2pdf-export:
+    - pandoc:
 ```
 ```bash
 project-root
@@ -91,4 +92,4 @@ If you want to contribute to the code of this project, please read the [Contribu
 
 ## Special thanks
 
-Special thanks go to [Lukas Geiter][lukasgeiter] for developing the [mkdocs-awesome-pages-plugin][awesome-pages-plugin] which was used as a base and for convincing [Stephan Hauser][shauser] to write a plugin for this.
+Special thanks go to [HaoLiuHust](https://github.com/haoliuhust) for developing the [mkdocs-mk2pdf-plugin](https://github.com/HaoLiuHust/mkdocs-mk2pdf-plugin).
