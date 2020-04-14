@@ -52,12 +52,12 @@ You may customize the plugin by passing options in `mkdocs.yml`:
 ```yaml
 plugins:
     - pandoc:
-        enabled_if_env: ENABLE_PDF_EXPORT
+        enabled_if_env: ENABLE_PANDOC_EXPORT
 ```
 
 ### `enabled_if_env`
 
-Setting this option will enable the build only if there is an environment variable set to 1. This is useful to disable building the PDF files during development, since it can take a long time to export all files. Default is not set.
+Setting this option will enable the build only if there is an environment variable set to 1. This is useful to disable building the files during development, since it can take a long time to export all files. Default is not set.
 
 ### `combined`
 
