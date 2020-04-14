@@ -13,30 +13,25 @@ def load_requirements(fname):
     reqs = parse_requirements(fname, session="test")
     return [str(ir.req) for ir in reqs]
 
-# 读取文件内容
 def read_file(filename):
     with open(os_path.join(this_directory, filename), encoding='utf-8') as f:
         long_description = f.read()
     return long_description
 
 setup(
-    name='mkdocs-mk2pdf-plugin',
-    version='0.1.5',
-    description='An MkDocs plugin to export content pages as PDF files',
-   
-    long_description=read_file('README.md'), # 读取的Readme文档内容
-    long_description_content_type="text/markdown",  # 指定包文档格式为markdown
-    keywords='mkdocs pdf export',
-    url='https://github.com/HaoLiuHust/mkdocs-mk2pdf-plugin',
-    author='Liu, Hao',
-    author_email='haoliuhust@hotmail.com',
+    name='mkdocs-pandoc-plugin',
+    version='1.0.0',
+    description='An MkDocs plugin to export content pages to any files that pandoc can handle',
+
+    long_description=read_file('README.md'),
+    long_description_content_type="text/markdown",
+    keywords='mkdocs pandoc export',
+    url='https://github.com/alexandre-perrin/mkdocs-pandoc-plugin',
+    author='Alexandre, Perrin',
+    author_email='alexandreperr@gmail.com',
     license='MIT',
     python_requires='>=3.4',
-    install_requires=[
-        'mkdocs>=0.17',
-        'beautifulsoup4>=4.6.3',
-    ],
-    #install_requires=load_requirements("requirements.txt"),
+    install_requires=load_requirements("requirements.txt"),
     classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
@@ -52,7 +47,7 @@ setup(
     packages=find_packages(),
     entry_points={
         'mkdocs.plugins': [
-            'mk2pdf-export = mkdocs_mk2pdf_plugin.plugin:MK2PdfPlugin'
+            'pandoc = mkdocs_pandoc.plugin:PandocPlugin'
         ]
     }
 )
