@@ -61,15 +61,15 @@ Setting this option will enable the build only if there is an environment variab
 
 ### `combined`
 
-Setting this to `true` will combine all pages into a single PDF file. All download links will point to this file. Default is `false`.
+Setting this to `true` will combine all pages into a single file. All download links will point to this file. Default is `false`.
 
 ### `combined_output_path`
 
-This option allows you to use a different destination for the combined PDF file. Has no effect when `combined` is set to `false`. Default is `pdf/combined.pdf`.
+This option allows you to use a different destination for the combined file. Has no effect when `combined` is set to `false`. Default is `pandoc/combined.pdf`.
 
 ### `pandoc_template`
 
-This option allows you to use a custom pandoc template to convert markdown file to pdf files.
+This option allows you to use a custom pandoc template to convert markdown file to translated document files.
 
 `mkdocs.yml`:
 ```yaml
