@@ -9,9 +9,9 @@ class Renderer(object):
 
     def write_pdf(self,  mk_filename: str, pdf_filename: str):
         if os.path.isfile(self.template) and os.path.exists(self.template):
-            os.system('pandoc --latex-engine=xelatex --template=%s  %s -o %s'%(self.template,mk_filename,pdf_filename))
+            os.system('pandoc --pdf-engine=xelatex --template=%s  %s -o %s'%(self.template,mk_filename,pdf_filename))
         else:
-            os.system('pandoc --latex-engine=xelatex %s -o %s'%(mk_filename,pdf_filename))
+            os.system('pandoc --pdf-engine=xelatex %s -o %s'%(mk_filename,pdf_filename))
 
     def add_doc(self, rel_path: str, abs_path: str):
         try:
