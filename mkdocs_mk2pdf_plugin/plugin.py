@@ -10,10 +10,10 @@ from .utils import modify_html
 
 class MK2PdfPlugin(BasePlugin):
     config_scheme = (
-        ('enabled_if_env', config_options.Type(utils.string_types)),
+        ('enabled_if_env', config_options.Type(str)),
         ('combined', config_options.Type(bool, default=False)),
-        ('combined_output_path', config_options.Type(utils.string_types, default="pdf/combined.pdf")),
-        ('pandoc_template', config_options.Type(utils.string_types, default="")),
+        ('combined_output_path', config_options.Type(str, default="pdf/combined.pdf")),
+        ('pandoc_template', config_options.Type(str, default="")),
     )
 
     def __init__(self):
