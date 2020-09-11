@@ -21,7 +21,7 @@ def read_file(filename):
 
 setup(
     name='mkdocs-mk2pdf-plugin',
-    version='0.1.5',
+    version='0.1.6',
     description='An MkDocs plugin to export content pages as PDF files',
    
     long_description=read_file('README.md'), # 读取的Readme文档内容
@@ -33,7 +33,7 @@ setup(
     license='MIT',
     python_requires='>=3.4',
     install_requires=[
-        'mkdocs>=0.17',
+        'mkdocs>=1.1.2',
         'beautifulsoup4>=4.6.3',
     ],
     #install_requires=load_requirements("requirements.txt"),

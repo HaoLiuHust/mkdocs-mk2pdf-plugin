@@ -34,5 +34,7 @@ class Renderer(object):
                     f.writelines(lines)
                     if not lines[-1].endswith('\n'):
                         f.write('\n')
+                    
+                    f.write("<div STYLE=\"page-break-after:always:\"></div>")
 
         self.write_pdf(combined_md,output_path)
