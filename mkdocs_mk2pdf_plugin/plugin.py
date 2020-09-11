@@ -4,7 +4,6 @@ from timeit import default_timer as timer
 
 from mkdocs.config import config_options
 from mkdocs.plugins import BasePlugin
-from mkdocs import utils
 import traceback
 from .utils import modify_html
 
