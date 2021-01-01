@@ -3,6 +3,7 @@ from pathlib import Path
 
 this_directory = Path(__file__).resolve().parent
 
+
 def read_file(filename):
     with open(str(this_directory / filename), encoding="utf-8") as f:
         long_description = f.read()
@@ -21,10 +22,7 @@ setup(
     author_email="alexandreperr@gmail.com",
     license="MIT",
     python_requires=">=3.4",
-    install_requires=[
-        "mkdocs",
-        "beautifulsoup4"
-    ],
+    install_requires=["mkdocs", "beautifulsoup4"],
     classifiers=[
         "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",
