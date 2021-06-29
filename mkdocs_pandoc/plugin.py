@@ -13,7 +13,6 @@ from .renderer import Renderer
 
 log = logging.getLogger("mkdocs.plugins.pandoc")
 
-
 class PandocPlugin(BasePlugin):
     config_scheme = (
         ("enabled_if_env", config_options.Type(str)),
@@ -43,7 +42,7 @@ class PandocPlugin(BasePlugin):
 
         self.combined = self.config["combined"]
         if self.combined:
-            log.error("Combined Pandoc export is enabled")
+            log.info("Combined Pandoc export is enabled")
 
         pandoc_args = {}
         for k, v in self.config["pandoc_args"].items():
@@ -107,7 +106,7 @@ class PandocPlugin(BasePlugin):
             else:
                 self.renderer.write_pandoc(page.file.abs_src_path, output_file)
 
-            output_content = modify_html(output_content, os.path.relpath(output_file, path), label=f"{filename}.{self.to_extension}")
+                output_content = modify_html(output_content, os.path.relpath(output_file, path), label=f"{filename}.{self.to_extension}")
 
         except Exception as e:
             log.error(f"Error converting {src_path} to {self.to_extension}: {e}", file=sys.stderr)
